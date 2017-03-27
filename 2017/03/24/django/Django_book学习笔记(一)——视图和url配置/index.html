@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="王勇斌的博客">
 <meta property="og:description" content="视图一个视图就是Python的一个函数，每个视图函数至少要有一个参数，通常被叫作request。 这是一个触发这个视图、包含当前Web请求信息的对象，是类django.http.HttpRequest的一个实例。它返回一个HttpResponse实例。为了使一个Python的函数成为一个Django可识别的视图，它必须满足这两个条件。(也有例外)">
 <meta property="og:image" content="http://yoursite.com/img/url正则表达式.png">
-<meta property="og:updated_time" content="2017-03-27T22:41:31.892Z">
+<meta property="og:updated_time" content="2017-03-27T22:52:17.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django book学习笔记(一)——视图和url配置">
 <meta name="twitter:description" content="视图一个视图就是Python的一个函数，每个视图函数至少要有一个参数，通常被叫作request。 这是一个触发这个视图、包含当前Web请求信息的对象，是类django.http.HttpRequest的一个实例。它返回一个HttpResponse实例。为了使一个Python的函数成为一个Django可识别的视图，它必须满足这两个条件。(也有例外)">
@@ -405,6 +405,10 @@
 <p>对应视图函数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> Http404, HttpResponse</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">hours_ahead</span><span class="params">(request, offset)</span>:</span></div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        offset = int(offset)</div><div class="line">    <span class="keyword">except</span> ValueError:</div><div class="line">        <span class="keyword">raise</span> Http404()</div><div class="line">    dt = datetime.datetime.now() + datetime.timedelta(hours=offset)</div><div class="line">    html = <span class="string">"&lt;html&gt;&lt;body&gt;In %s hour(s), it will be %s.&lt;/body&gt;&lt;/html&gt;"</span> % (offset, dt)</div><div class="line">    <span class="keyword">return</span> HttpResponse(html)</div></pre></td></tr></table></figure></p>
 <p>解释：offset 是从匹配的URL里提取出来的。 例如：如果请求URL是/time/plus/3/，那么offset将会是3；如果请求URL是/time/plus/21/，那么offset将会是21。请注意：捕获值永远都是字符串（string）类型，而不会是整数（integer）类型，即使这个字符串全由数字构成（如：“21”）。<br>4).URL中常用的正则表达式<br><img src="/img/url正则表达式.png" alt="正则表达式"></p>
 <h5 id="Django处理请求过程"><a href="#Django处理请求过程" class="headerlink" title="Django处理请求过程"></a>Django处理请求过程</h5><p>1).进来的请求转入/hello/.<br>2).Django通过在ROOT_URLCONF配置来决定根URLconf.<br>3).Django在URLconf中的所有URL模式中，查找第一个匹配/hello/的条目。<br>4).如果找到匹配，将调用相应的视图函数<br>5).视图函数返回一个HttpResponse<br>6.)Django转换HttpResponse为一个适合的HTTP response， 以Web page显示出来  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;% for athlete in athlete_list reversed %&#125;</div><div class="line">...</div><div class="line">&#123;% endfor %&#125;</div></pre></td></tr></table></figure>
+
+{% if %} 会积极金额
+
 
       
     </div>
