@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/28/django/Django_book学习笔记(二)——模板/index.html">
 <meta property="og:site_name" content="王勇斌的博客">
 <meta property="og:description" content="模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
-<meta property="og:updated_time" content="2017-03-27T23:50:57.594Z">
+<meta property="og:updated_time" content="2017-03-27T23:56:27.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django book学习笔记(二)——模板">
 <meta name="twitter:description" content="模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
@@ -410,11 +410,11 @@
 <li>列表类型索引查找 (比如 foo[bar] )<br>系统使用所找到的第一个有效类型。 这是一种短路逻辑。<br>==注意==：</li>
 <li>调用方法时不需要使用圆括号，而且也无法给该方法传递参数；你只能调用不需参数的方法。</li>
 <li>在方法查找过程中，如果某方法抛出一个异常，如果该异常有一个 silent_variable_failure 属性并且值为 True，则模板里的指定变量会被置为空字符串。</li>
-<li>如果模板文件里包含了  ，对象又具有 delete()方法，而且delete() 有alters_data=True这个属性，那么在模板载入时， delete()方法将不会被执行。 它将静静地错误退出。  <h5 id="基本的模板标签和过滤器"><a href="#基本的模板标签和过滤器" class="headerlink" title="基本的模板标签和过滤器"></a>基本的模板标签和过滤器</h5>1).if/else  </li>
+<li>如果模板文件里包含了  ，对象又具有 delete()方法，而且delete() 有alters_data=True这个属性，那么在模板载入时， delete()方法将不会被执行。 它将静静地错误退出。  </li>
 </ul>
-
+<h5 id="基本的模板标签和过滤器"><a href="#基本的模板标签和过滤器" class="headerlink" title="基本的模板标签和过滤器"></a>基本的模板标签和过滤器</h5><p>1).if/else<br>
 {% if %} 标签检查(evaluate)一个变量，如果这个变量为真(即，变量存在，非空，不是布尔值假)，系统会显示在 {% if %} 和 {% endif %} 之间的任何内容，例如：  
-
+</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;% if today_is_weekend %&#125;</div><div class="line">    &lt;p&gt;Welcome to the weekend!&lt;/p&gt;</div><div class="line">&#123;% else %&#125;</div><div class="line">    &lt;p&gt;Get back to work.&lt;/p&gt;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure>
 
 {% if %} 标签接受 and ， or 或者 not 关键字来对多个变量做判断 ，或者对变量取反（ not )，但是{% if %} 标签不允许在同一个标签中同时使用 and 和 or ，因为逻辑上可能模糊的。而且没有 {% elif %} 标签， 请使用嵌套的{% if %}标签来达成同样的效果。一定要用 {% endif %} 关闭每一个 {% if %} 标签。  
@@ -446,11 +446,11 @@ for标签支持一个可选的{% empty %}分句，通过它我们可以定义当
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;% for link in links %&#125;&#123;&#123; link &#125;&#125;&#123;% if not forloop.last %&#125; | &#123;% endif %&#125;&#123;% endfor %&#125;</div></pre></td></tr></table></figure>
 <ul>
-<li>forloop.parentloop 是一个指向当前循环的上一级循环的 forloop 对象的引用（在嵌套循环的情况下）。<br>3).ifequal/ifnotequal  
-{% ifequal %} 标签比较两个值，当他们相同时，显示在 {% ifequal %} 和 {% endifequal %} 之中所有的值。和 {% if %} 类似， {% ifequal %} 支持可选的 {% else%} 标签。
-
-</li>
+<li>forloop.parentloop 是一个指向当前循环的上一级循环的 forloop 对象的引用（在嵌套循环的情况下）。  </li>
 </ul>
+<p>3).ifequal/ifnotequal<br>
+{% ifequal %} 标签比较两个值，当他们相同时，显示在 {% ifequal %} 和 {% endifequal %} 之中所有的值。和 {% if %} 类似， {% ifequal %} 支持可选的 {% else%} 标签。
+</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;% ifequal section &apos;sitenews&apos; %&#125;</div><div class="line">    &lt;h1&gt;Site News&lt;/h1&gt;</div><div class="line">&#123;% else %&#125;</div><div class="line">    &lt;h1&gt;No News Here&lt;/h1&gt;</div><div class="line">&#123;% endifequal %&#125;</div></pre></td></tr></table></figure>
 
 只有模板变量，字符串，整数和小数可以作为 {% ifequal %} 标签的参数。
@@ -471,9 +471,9 @@ for标签支持一个可选的{% empty %}分句，通过它我们可以定义当
 <ul>
 <li>addslashes : 添加反斜杠到任何反斜杠、单引号或者双引号前面。</li>
 <li>date : 按指定的格式字符串参数格式化 date 或者 datetime 对象。</li>
-<li>length : 返回变量的长度。 对于列表，这个参数将返回列表元素的个数。 对于字符串，这个参数将返回字符串中字符的个数。 你可以对列表或者字符串，或者任何知道怎么测定长度的Python 对象使用这个方法（也就是说，有 <strong>len</strong>() 方法的对象）。<h5 id="在视图中使用模板"><a href="#在视图中使用模板" class="headerlink" title="在视图中使用模板"></a>在视图中使用模板</h5>1).模板加载<br>打开settings.py配置文件，找到TEMPLATE_DIRS添加一个目录用于存放模板文件，例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TEMPLATE_DIRS = (</div><div class="line">    &apos;/home/django/mysite/templates&apos;,</div><div class="line">)</div></pre></td></tr></table></figure>
-</li>
+<li>length : 返回变量的长度。 对于列表，这个参数将返回列表元素的个数。 对于字符串，这个参数将返回字符串中字符的个数。 你可以对列表或者字符串，或者任何知道怎么测定长度的Python 对象使用这个方法（也就是说，有 <strong>len</strong>() 方法的对象）。</li>
 </ul>
+<h5 id="在视图中使用模板"><a href="#在视图中使用模板" class="headerlink" title="在视图中使用模板"></a>在视图中使用模板</h5><p>1).模板加载<br>打开settings.py配置文件，找到TEMPLATE_DIRS添加一个目录用于存放模板文件，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TEMPLATE_DIRS = (</div><div class="line">    &apos;/home/django/mysite/templates&apos;,</div><div class="line">)</div></pre></td></tr></table></figure></p>
 <p>完成 TEMPLATE_DIRS 设置后，下一步就是修改视图代码，让它使用 Django 模板加载功能而不是对模板路径硬编码。例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.template.loader <span class="keyword">import</span> get_template</div><div class="line"><span class="keyword">from</span> django.template <span class="keyword">import</span> Context</div><div class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">current_datetime</span><span class="params">(request)</span>:</span></div><div class="line">    now = datetime.datetime.now()</div><div class="line">    t = get_template(<span class="string">'current_datetime.html'</span>)</div><div class="line">    html = t.render(Context(&#123;<span class="string">'current_date'</span>: now&#125;))</div><div class="line">    <span class="keyword">return</span> HttpResponse(html)</div></pre></td></tr></table></figure></p>
 <p>get_template()方法会自动为你连接已经设置的TEMPLATE_DIRS目录和你传入该法的模板名称参数，在文件系统中找出模块的位置，打开文件并返回一个编译好的 Template 对象。<br>2).render_to_response()<br>Django提供了一个捷径，让你一次性地载入某个模板文件，渲染它，然后将此作为HttpResponse返回。该捷径就是位于django.shortcuts模块中名为render_to_response() 的函数，大多数情况下，你会使用render_to_response()而不是手动加载模板并创建Context和HttpResponse对象。<br>render_to_response() 的第一个参数必须是要使用的模板名称。 如果要给定第二个参数，那么该参数必须是为该模板创建 Context 时所使用的字典。 如果不提供第二个参数， render_to_response() 使用一个空字典。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render_to_response</div><div class="line"><span class="keyword">import</span> datetime</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">current_datetime</span><span class="params">(request)</span>:</span></div><div class="line">    now = datetime.datetime.now()</div><div class="line">    <span class="keyword">return</span> render_to_response(<span class="string">'current_datetime.html'</span>, &#123;<span class="string">'current_date'</span>: now&#125;)</div></pre></td></tr></table></figure></p>
 <h5 id="include模板标签"><a href="#include模板标签" class="headerlink" title="include模板标签"></a>include模板标签</h5>
