@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/28/django/Django_book学习笔记(二)——模板/index.html">
 <meta property="og:site_name" content="王勇斌的博客">
 <meta property="og:description" content="1.模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
-<meta property="og:updated_time" content="2017-03-27T23:03:48.236Z">
+<meta property="og:updated_time" content="2017-03-27T23:06:55.429Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django book学习笔记(二)——模板">
 <meta name="twitter:description" content="1.模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
@@ -488,6 +488,8 @@ for标签支持一个可选的{% empty %}分句，通过它我们可以定义当
 
 在加载 current_datetime.html 模板时，模板引擎发现了 {% extends %} 标签， 注意到该模板是一个子模板。模板引擎立即装载其父模板，即base.html 。  
 此时，模板引擎注意到 base.html 中的三个 {% block %} 标签，并用子模板的内容替换这些 block 。因此，引擎将会使用我们在 { block title %} 中定义的标题，对 {% block content %} 也是如此。 所以，网页标题一块将由 {% block title %}替换，同样地，网页的内容一块将由 {% block content %}替换。
+
+
 - 如果在模板中使用 {% extends %} ，必须保证其为模板中的第一个模板标记。 否则，模板继承将不起作用。
 - 一般来说，基础模板中的 {% block %} 标签越多越好。记住，子模板不必定义父模板中所有的代码块，因此你可以用合理的缺省值对一些代码块进行填充，然后只对子模板所需的代码块进行（重）定义。 俗话说，钩子越多越好。
 - 如果发觉自己在多个模板之间拷贝代码，你应该考虑将该代码段放置到父模板的某个 {% block %} 中。
