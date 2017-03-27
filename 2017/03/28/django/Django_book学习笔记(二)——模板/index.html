@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/28/django/Django_book学习笔记(二)——模板/index.html">
 <meta property="og:site_name" content="王勇斌的博客">
 <meta property="og:description" content="模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
-<meta property="og:updated_time" content="2017-03-27T23:47:22.247Z">
+<meta property="og:updated_time" content="2017-03-27T23:50:57.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django book学习笔记(二)——模板">
 <meta name="twitter:description" content="模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
@@ -410,11 +410,11 @@
 <li>列表类型索引查找 (比如 foo[bar] )<br>系统使用所找到的第一个有效类型。 这是一种短路逻辑。<br>==注意==：</li>
 <li>调用方法时不需要使用圆括号，而且也无法给该方法传递参数；你只能调用不需参数的方法。</li>
 <li>在方法查找过程中，如果某方法抛出一个异常，如果该异常有一个 silent_variable_failure 属性并且值为 True，则模板里的指定变量会被置为空字符串。</li>
-<li>如果模板文件里包含了  ，对象又具有 delete()方法，而且delete() 有alters_data=True这个属性，那么在模板载入时， delete()方法将不会被执行。 它将静静地错误退出。<h5 id="基本的模板标签和过滤器"><a href="#基本的模板标签和过滤器" class="headerlink" title="基本的模板标签和过滤器"></a>基本的模板标签和过滤器</h5>1).if/else  
+<li>如果模板文件里包含了  ，对象又具有 delete()方法，而且delete() 有alters_data=True这个属性，那么在模板载入时， delete()方法将不会被执行。 它将静静地错误退出。  <h5 id="基本的模板标签和过滤器"><a href="#基本的模板标签和过滤器" class="headerlink" title="基本的模板标签和过滤器"></a>基本的模板标签和过滤器</h5>1).if/else  </li>
+</ul>
+
 {% if %} 标签检查(evaluate)一个变量，如果这个变量为真(即，变量存在，非空，不是布尔值假)，系统会显示在 {% if %} 和 {% endif %} 之间的任何内容，例如：  
 
-</li>
-</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;% if today_is_weekend %&#125;</div><div class="line">    &lt;p&gt;Welcome to the weekend!&lt;/p&gt;</div><div class="line">&#123;% else %&#125;</div><div class="line">    &lt;p&gt;Get back to work.&lt;/p&gt;</div><div class="line">&#123;% endif %&#125;</div></pre></td></tr></table></figure>
 
 {% if %} 标签接受 and ， or 或者 not 关键字来对多个变量做判断 ，或者对变量取反（ not )，但是{% if %} 标签不允许在同一个标签中同时使用 and 和 or ，因为逻辑上可能模糊的。而且没有 {% elif %} 标签， 请使用嵌套的{% if %}标签来达成同样的效果。一定要用 {% endif %} 关闭每一个 {% if %} 标签。  
