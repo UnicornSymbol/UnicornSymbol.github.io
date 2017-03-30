@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="centos6.5,gcc," />
 
 
 
@@ -87,12 +87,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="王勇斌的博客">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  
+下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2
+下载编译所需依赖12cd gcc-4.8.2./contrib/download_prerequisite">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django book学习笔记(二)——模板">
+<meta property="og:url" content="http://yoursite.com/2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/index.html">
 <meta property="og:site_name" content="王勇斌的博客">
+<meta property="og:description" content="由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  
+下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2
+下载编译所需依赖12cd gcc-4.8.2./contrib/download_prerequisite">
+<meta property="og:updated_time" content="2017-03-30T10:19:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王勇斌的博客">
+<meta name="twitter:title" content="Django book学习笔记(二)——模板">
+<meta name="twitter:description" content="由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  
+下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2
+下载编译所需依赖12cd gcc-4.8.2./contrib/download_prerequisite">
 
 
 
@@ -120,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/"/>
 
 
 
 
 
-  <title> 归档 | 王勇斌的博客 </title>
+  <title> Django book学习笔记(二)——模板 | 王勇斌的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -151,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,177 +289,197 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 4 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/" itemprop="url">
-              
-                <span itemprop="name">Django book学习笔记(二)——模板</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-30T18:22:29+08:00"
-              content="2017-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/28/django/Django_book学习笔记(二)——模板/" itemprop="url">
-              
-                <span itemprop="name">Django book学习笔记(二)——模板</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-28T13:40:36+08:00"
-              content="2017-03-28" >
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/24/django/Django_book学习笔记(一)——视图和url配置/" itemprop="url">
-              
-                <span itemprop="name">Django book学习笔记(一)——视图和url配置</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-24T03:09:35+08:00"
-              content="2017-03-24" >
-          03-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/21/新的开始/" itemprop="url">
-              
-                <span itemprop="name">新的开始</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-21T21:38:10+08:00"
-              content="2017-03-21" >
-          03-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Unicorn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/unicorn.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="王勇斌的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Django book学习笔记(二)——模板
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-30T18:22:29+08:00">
+                2017-03-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  </p>
+<h5 id="下载源码安装包"><a href="#下载源码安装包" class="headerlink" title="下载源码安装包"></a>下载源码安装包</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2</div><div class="line">tar -jxvf gcc-4.8.2.tar.bz2</div></pre></td></tr></table></figure>
+<h5 id="下载编译所需依赖"><a href="#下载编译所需依赖" class="headerlink" title="下载编译所需依赖"></a>下载编译所需依赖</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> gcc-4.8.2</div><div class="line">./contrib/download_prerequisites</div></pre></td></tr></table></figure>
+<h5 id="建立目录供编译输出"><a href="#建立目录供编译输出" class="headerlink" title="建立目录供编译输出"></a>建立目录供编译输出</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir gcc-build-4.8.2</div><div class="line"><span class="built_in">cd</span> gcc-build-4.8.2</div></pre></td></tr></table></figure>
+<h5 id="生成Makefile文件"><a href="#生成Makefile文件" class="headerlink" title="生成Makefile文件"></a>生成Makefile文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib</div></pre></td></tr></table></figure>
+<h5 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<h5 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@localhost gcc-build-4.8.2]# gcc -v</div><div class="line">使用内建 specs。</div><div class="line">COLLECT_GCC=gcc</div><div class="line">COLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/4.8.2/lto-wrapper</div><div class="line">目标：x86_64-unknown-linux-gnu</div><div class="line">配置为：../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib</div><div class="line">线程模型：posix</div><div class="line">gcc 版本 4.8.2 (GCC)</div></pre></td></tr></table></figure>
+<h5 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h5><p><a href="http://www.centoscn.com/image-text/config/2015/0206/4643.html" target="_blank" rel="external">CentOS6.5手动升级gcc4.8.2</a><br><a href="http://www.centoscn.com/image-text/config/2015/0823/6041.html" target="_blank" rel="external">CentOS6.6升级gcc4.8教程</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/centos6-5/" rel="tag"># centos6.5</a>
+          
+            <a href="/tags/gcc/" rel="tag"># gcc</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/28/django/Django_book学习笔记(二)——模板/" rel="next" title="Django book学习笔记(二)——模板">
+                <i class="fa fa-chevron-left"></i> Django book学习笔记(二)——模板
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -457,6 +487,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/"
+           data-title="Django book学习笔记(二)——模板" data-url="http://yoursite.com/2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -476,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/unicorn.jpg"
@@ -577,6 +624,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#下载源码安装包"><span class="nav-number">1.</span> <span class="nav-text">下载源码安装包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下载编译所需依赖"><span class="nav-number">2.</span> <span class="nav-text">下载编译所需依赖</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#建立目录供编译输出"><span class="nav-number">3.</span> <span class="nav-text">建立目录供编译输出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#生成Makefile文件"><span class="nav-number">4.</span> <span class="nav-text">生成Makefile文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#编译安装"><span class="nav-number">5.</span> <span class="nav-text">编译安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#验证"><span class="nav-number">6.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -689,11 +752,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
