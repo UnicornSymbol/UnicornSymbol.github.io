@@ -88,21 +88,18 @@
 
 
 <meta name="description" content="由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  
-下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2
-下载编译所需依赖12cd gcc-4.8.2./contrib/download_prerequisite">
+下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Centos6.5升级gcc4.4.7到4.8.2">
 <meta property="og:url" content="http://yoursite.com/2017/03/30/shell/centos6.5升级gcc4.4.7到4.8.2/index.html">
 <meta property="og:site_name" content="王勇斌的博客">
 <meta property="og:description" content="由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  
-下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2
-下载编译所需依赖12cd gcc-4.8.2./contrib/download_prerequisite">
-<meta property="og:updated_time" content="2017-03-30T03:20:26.401Z">
+下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2">
+<meta property="og:updated_time" content="2017-03-30T03:47:33.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Centos6.5升级gcc4.4.7到4.8.2">
 <meta name="twitter:description" content="由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  
-下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2
-下载编译所需依赖12cd gcc-4.8.2./contrib/download_prerequisite">
+下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2">
 
 
 
@@ -405,6 +402,7 @@
       
         <p>由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。  </p>
 <h5 id="下载源码安装包"><a href="#下载源码安装包" class="headerlink" title="下载源码安装包"></a>下载源码安装包</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2</div><div class="line">tar -jxvf gcc-4.8.2.tar.bz2</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h5 id="下载编译所需依赖"><a href="#下载编译所需依赖" class="headerlink" title="下载编译所需依赖"></a>下载编译所需依赖</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> gcc-4.8.2</div><div class="line">./contrib/download_prerequisites</div></pre></td></tr></table></figure>
 <h5 id="建立目录供编译输出"><a href="#建立目录供编译输出" class="headerlink" title="建立目录供编译输出"></a>建立目录供编译输出</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir gcc-build-4.8.2</div><div class="line"><span class="built_in">cd</span> gcc-build-4.8.2</div></pre></td></tr></table></figure>
 <h5 id="生成Makefile文件"><a href="#生成Makefile文件" class="headerlink" title="生成Makefile文件"></a>生成Makefile文件</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib</div></pre></td></tr></table></figure>
