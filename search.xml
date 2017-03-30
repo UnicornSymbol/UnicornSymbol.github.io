@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title><![CDATA[Django book学习笔记(二)——模板]]></title>
+      <title><![CDATA[Centos6.5升级gcc4.4.7到4.8.2]]></title>
       <url>%2F2017%2F03%2F30%2Fshell%2Fcentos6.5%E5%8D%87%E7%BA%A7gcc4.4.7%E5%88%B04.8.2%2F</url>
       <content type="text"><![CDATA[由于centos6.5自带的gcc4.4.7不能支持c++11的特性，所以希望升级到4.8.2。 下载源码安装包12wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.2/gcc-4.8.2.tar.bz2tar -jxvf gcc-4.8.2.tar.bz2 下载编译所需依赖12cd gcc-4.8.2./contrib/download_prerequisites 建立目录供编译输出12mkdir gcc-build-4.8.2cd gcc-build-4.8.2 生成Makefile文件1../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib 编译安装1make &amp;&amp; make install 验证12345678[root@localhost gcc-build-4.8.2]# gcc -v使用内建 specs。COLLECT_GCC=gccCOLLECT_LTO_WRAPPER=/usr/local/libexec/gcc/x86_64-unknown-linux-gnu/4.8.2/lto-wrapper目标：x86_64-unknown-linux-gnu配置为：../configure -enable-checking=release -enable-languages=c,c++ -disable-multilib线程模型：posixgcc 版本 4.8.2 (GCC) 参考资料CentOS6.5手动升级gcc4.8.2CentOS6.6升级gcc4.8教程]]></content>
     </entry>
