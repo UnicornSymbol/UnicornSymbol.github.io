@@ -93,7 +93,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/28/django/Django_book学习笔记(二)——模板/index.html">
 <meta property="og:site_name" content="王勇斌的博客">
 <meta property="og:description" content="模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
-<meta property="og:updated_time" content="2017-03-31T04:10:32.538Z">
+<meta property="og:updated_time" content="2017-03-31T04:16:40.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django book学习笔记(二)——模板">
 <meta name="twitter:description" content="模板系统的基本知识模板是一个文本，用于分离文档的表现形式和内容。 模板定义了占位符以及各种用于规范文档该如何显示的各部分基本逻辑（模板标签）。 模板通常用于产生HTML，但是Django的模板也能产生任何基于文本格式的文档。">
@@ -407,7 +407,10 @@
 <li>字典类型查找 （比如 foo[“bar”] )</li>
 <li>属性查找 (比如 foo.bar )</li>
 <li>方法调用 （比如 foo.bar() )</li>
-<li>列表类型索引查找 (比如 foo[bar] )<br>系统使用所找到的第一个有效类型。 这是一种短路逻辑。<br><strong>注意</strong>：</li>
+<li>列表类型索引查找 (比如 foo[bar] )  </li>
+</ul>
+<p>系统使用所找到的第一个有效类型。 这是一种短路逻辑。<br><strong>注意</strong>：</p>
+<ul>
 <li>调用方法时不需要使用圆括号，而且也无法给该方法传递参数；你只能调用不需参数的方法。</li>
 <li>在方法查找过程中，如果某方法抛出一个异常，如果该异常有一个 silent_variable_failure 属性并且值为 True，则模板里的指定变量会被置为空字符串。</li>
 <li>如果模板文件里包含了  ，对象又具有 delete()方法，而且delete() 有alters_data=True这个属性，那么在模板载入时， delete()方法将不会被执行。 它将静静地错误退出。 </li>
