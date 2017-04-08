@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="centos6.5,glibc," />
+  <meta name="keywords" content="python,django," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="&amp;ensp;&amp;ensp;Centos6.5默认的 glibc版本最高为2.12， 而在进行一些开发时项目所依赖的包往往需要更高版本的glibc库支持，因此在不升级系统的前提下， 需要主动更新系统glibc库。 一般遇到错误libc.so.6: version GLIBC_2.15 not found时表示需要对glibc进行升级了。">
+<meta name="description" content="创建表&amp;ensp;&amp;ensp;Django中遵循 Code Frist 的原则，即：根据代码中定义的类来自动生成数据库表。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Centos6.5升级glibc2.12到2.15">
-<meta property="og:url" content="http://yoursite.com/2017/04/05/shell/Centos6.5升级glibc2.12到2.15/index.html">
+<meta property="og:title" content="Django之model详解">
+<meta property="og:url" content="http://yoursite.com/2017/04/11/django/Django之model详解/index.html">
 <meta property="og:site_name" content="王勇斌的博客">
-<meta property="og:description" content="&amp;ensp;&amp;ensp;Centos6.5默认的 glibc版本最高为2.12， 而在进行一些开发时项目所依赖的包往往需要更高版本的glibc库支持，因此在不升级系统的前提下， 需要主动更新系统glibc库。 一般遇到错误libc.so.6: version GLIBC_2.15 not found时表示需要对glibc进行升级了。">
-<meta property="og:updated_time" content="2017-04-03T21:17:55.538Z">
+<meta property="og:description" content="创建表&amp;ensp;&amp;ensp;Django中遵循 Code Frist 的原则，即：根据代码中定义的类来自动生成数据库表。">
+<meta property="og:updated_time" content="2017-04-11T09:06:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Centos6.5升级glibc2.12到2.15">
-<meta name="twitter:description" content="&amp;ensp;&amp;ensp;Centos6.5默认的 glibc版本最高为2.12， 而在进行一些开发时项目所依赖的包往往需要更高版本的glibc库支持，因此在不升级系统的前提下， 需要主动更新系统glibc库。 一般遇到错误libc.so.6: version GLIBC_2.15 not found时表示需要对glibc进行升级了。">
+<meta name="twitter:title" content="Django之model详解">
+<meta name="twitter:description" content="创建表&amp;ensp;&amp;ensp;Django中遵循 Code Frist 的原则，即：根据代码中定义的类来自动生成数据库表。">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/05/shell/Centos6.5升级glibc2.12到2.15/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/11/django/Django之model详解/"/>
 
 
 
 
 
-  <title> Centos6.5升级glibc2.12到2.15 | 王勇斌的博客 </title>
+  <title> Django之model详解 | 王勇斌的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +293,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/05/shell/Centos6.5升级glibc2.12到2.15/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/11/django/Django之model详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Unicorn">
@@ -314,7 +314,7 @@
             
             
               
-                Centos6.5升级glibc2.12到2.15
+                Django之model详解
               
             
           </h1>
@@ -329,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-05T09:37:30+08:00">
-                2017-04-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-11T11:20:26+08:00">
+                2017-04-11
               </time>
             
 
@@ -352,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
+                  <a href="/categories/django/" itemprop="url" rel="index">
+                    <span itemprop="name">django</span>
                   </a>
                 </span>
 
@@ -370,8 +370,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/05/shell/Centos6.5升级glibc2.12到2.15/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/05/shell/Centos6.5升级glibc2.12到2.15/" itemprop="commentCount"></span>
+                <a href="/2017/04/11/django/Django之model详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/11/django/Django之model详解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -397,12 +397,20 @@
       
 
       
-        <p>&ensp;&ensp;Centos6.5默认的 glibc版本最高为2.12， 而在进行一些开发时项目所依赖的包往往需要更高版本的glibc库支持，因此在不升级系统的前提下， 需要主动更新系统glibc库。 一般遇到错误libc.so.6: version GLIBC_2.15 not found时表示需要对glibc进行升级了。<br><a id="more"></a></p>
-<h5 id="查看系统glibc支持的版本"><a href="#查看系统glibc支持的版本" class="headerlink" title="查看系统glibc支持的版本"></a>查看系统glibc支持的版本</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">strings /lib64/libc.so.6 | grep GLIBC</div><div class="line"> GLIBC_2.2.5</div><div class="line"> GLIBC_2.2.6</div><div class="line"> GLIBC_2.3</div><div class="line"> GLIBC_2.3.2</div><div class="line"> GLIBC_2.3.3</div><div class="line"> GLIBC_2.3.4</div><div class="line"> GLIBC_2.4</div><div class="line"> GLIBC_2.5</div><div class="line"> GLIBC_2.6</div><div class="line"> GLIBC_2.7</div><div class="line"> GLIBC_2.8</div><div class="line"> GLIBC_2.9</div><div class="line"> GLIBC_2.10</div><div class="line"> GLIBC_2.11</div><div class="line"> GLIBC_2.12</div><div class="line"> GLIBC_PRIVATE</div><div class="line"><span class="comment"># 查看当前glibc的版本</span></div><div class="line">ll /lib64/libc.so.6   </div><div class="line"> lrwxrwxrwx. 1 root root 12 Oct  9  2014 /lib64/libc.so.6 -&gt; libc-2.12.so</div></pre></td></tr></table></figure>
-<h5 id="安装升级glibc"><a href="#安装升级glibc" class="headerlink" title="安装升级glibc"></a>安装升级glibc</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/</div><div class="line">wget http://mirror.bjtu.edu.cn/gnu/glibc/glibc-2.15.tar.gz</div><div class="line">tar xf glibc-2.15.tar.gz</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build/</div><div class="line">../glibc-2.15/configure  --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin</div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
-<h5 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">strings /lib64/libc.so.6 | grep GLIBC</div><div class="line"> GLIBC_2.2.5</div><div class="line"> GLIBC_2.2.6</div><div class="line"> GLIBC_2.3</div><div class="line"> GLIBC_2.3.2</div><div class="line"> GLIBC_2.3.3</div><div class="line"> GLIBC_2.3.4</div><div class="line"> GLIBC_2.4</div><div class="line"> GLIBC_2.5</div><div class="line"> GLIBC_2.6</div><div class="line"> GLIBC_2.7</div><div class="line"> GLIBC_2.8</div><div class="line"> GLIBC_2.9</div><div class="line"> GLIBC_2.10</div><div class="line"> GLIBC_2.11</div><div class="line"> GLIBC_2.12</div><div class="line"> GLIBC_2.13</div><div class="line"> GLIBC_2.14</div><div class="line"> GLIBC_2.15</div><div class="line"> GLIBC_PRIVATE</div><div class="line">ll /lib64/libc.so.6 </div><div class="line"> lrwxrwxrwx 1 root root 12 4月   4 03:11 /lib64/libc.so.6 -&gt; libc-2.15.so</div></pre></td></tr></table></figure>
-<h5 id="误删libc-so-6解决办法"><a href="#误删libc-so-6解决办法" class="headerlink" title="误删libc.so.6解决办法"></a>误删libc.so.6解决办法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LD_PRELOAD=/lib/libc-2.12.so ln -s /lib/libc-2.12.so lib/libc.so.6</div></pre></td></tr></table></figure>
-<h5 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h5><p><a href="http://blog.csdn.net/hnhuangyiyang/article/details/50392997" target="_blank" rel="external">CentOS6.5系统”libc.so.6: version ‘GLIBC_2.15’ not found”解决方法</a><br><a href="http://cnodejs.org/topic/56dc21f1502596633dc2c3dc" target="_blank" rel="external">Centos6.5升级glibc过程</a></p>
+        <h5 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h5><p>&ensp;&ensp;Django中遵循 Code Frist 的原则，即：根据代码中定义的类来自动生成数据库表。<br><a id="more"></a></p>
+<h6 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</div><div class="line"></div><div class="line"><span class="comment"># Create your models here.</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">userinfo</span><span class="params">(models.Model)</span>:</span></div><div class="line">    nid = models.AutoField(primary_key=<span class="keyword">True</span>)</div><div class="line">    username = models.CharField(max_length=<span class="number">32</span>)</div><div class="line">    email = models.EmailField()</div><div class="line">    ip = models.GenericIPAddressField()</div><div class="line">    memo = models.TextField()</div><div class="line">    img = models.ImageField()</div><div class="line">    usertype=models.ForeignKey(<span class="string">"usertype"</span>,null=<span class="keyword">True</span>,blank=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">usertype</span><span class="params">(models.Model)</span>:</span></div><div class="line">    name = models.CharField(max_length=<span class="number">32</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> self.name</div></pre></td></tr></table></figure>
+<ul>
+<li><p>常用字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">models.AutoField　　自增列 = int(11)</div><div class="line">　如果没有的话，默认会生成一个名称为 id 的列，如果要显示的自定义一个自增列，必须将给列设置为主键 primary_key=True。</div><div class="line">models.CharField　　字符串字段</div><div class="line">　必须 max_length 参数</div><div class="line">models.BooleanField　　布尔类型=tinyint(1)</div><div class="line">　不能为空，Blank=True</div><div class="line">models.ComaSeparatedIntegerField　　用逗号分割的数字=varchar</div><div class="line">　继承CharField，所以必须 max_lenght 参数</div><div class="line">models.DateField　　日期类型 date</div><div class="line">　对于参数，auto_now = True 则每次更新都会更新这个时间；auto_now_add 则只是第一次创建添加，之后的更新不再改变。</div><div class="line">models.DateTimeField　　日期类型 datetime</div><div class="line">　同DateField的参数</div><div class="line">models.Decimal　　十进制小数类型 = decimal</div><div class="line">　必须指定整数位max_digits和小数位decimal_places</div><div class="line">models.EmailField　　字符串类型（正则表达式邮箱） =varchar</div><div class="line">　对字符串进行正则表达式</div><div class="line">models.FloatField　　浮点类型 = double</div><div class="line">models.IntegerField　　整形</div><div class="line">models.BigIntegerField　　长整形</div><div class="line">　　integer_field_ranges = &#123;</div><div class="line">　　　　&apos;SmallIntegerField&apos;: (-32768, 32767),</div><div class="line">　　　　&apos;IntegerField&apos;: (-2147483648, 2147483647),</div><div class="line">　　　　&apos;BigIntegerField&apos;: (-9223372036854775808, 9223372036854775807),</div><div class="line">　　　　&apos;PositiveSmallIntegerField&apos;: (0, 32767),</div><div class="line">　　　　&apos;PositiveIntegerField&apos;: (0, 2147483647),</div><div class="line">　　&#125;</div><div class="line">models.IPAddressField　　字符串类型（ip4正则表达式）</div><div class="line">models.GenericIPAddressField　　字符串类型（ip4和ip6是可选的）</div><div class="line">　参数protocol可以是：both、ipv4、ipv6</div><div class="line">　验证时，会根据设置报错</div><div class="line">models.NullBooleanField　　允许为空的布尔类型</div><div class="line">models.PositiveIntegerFiel　　正Integer</div><div class="line">models.PositiveSmallIntegerField　　正smallInteger</div><div class="line">models.SlugField　　减号、下划线、字母、数字</div><div class="line">models.SmallIntegerField　　数字</div><div class="line">　数据库中的字段有：tinyint、smallint、int、bigint</div><div class="line">models.TextField　　字符串=longtext</div><div class="line">models.TimeField　　时间 HH:MM[:ss[.uuuuuu]]</div><div class="line">models.URLField　　字符串，地址正则表达式</div><div class="line">models.BinaryField　　二进制</div><div class="line">models.ImageField   图片</div><div class="line">models.FilePathField 文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>常用参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">1、null=True</div><div class="line">　数据库中字段是否可以为空</div><div class="line">2、blank=True</div><div class="line">　django的Admin中添加数据时是否可允许空值</div><div class="line">3、primary_key = False</div><div class="line">　主键，对AutoField设置主键后，就会代替原来的自增 id 列</div><div class="line">4、auto_now 和 auto_now_add</div><div class="line">　auto_now  自动创建---无论添加或修改，都是当前操作的时间</div><div class="line">　auto_now_add  自动创建---永远是创建时的时间</div><div class="line">5、choices</div><div class="line">GENDER_CHOICE = (</div><div class="line">        (u&apos;M&apos;, u&apos;Male&apos;),</div><div class="line">        (u&apos;F&apos;, u&apos;Female&apos;),</div><div class="line">    )</div><div class="line">gender = models.CharField(max_length=2,choices = GENDER_CHOICE)</div><div class="line">6、max_length</div><div class="line">7、default　　默认值</div><div class="line">8、verbose_name　　Admin中字段的显示名称</div><div class="line">9、name|db_column　　数据库中的字段名称</div><div class="line">10、unique=True　　不允许重复</div><div class="line">11、db_index = True　　数据库索引</div><div class="line">12、editable=True　　在Admin里是否可编辑</div><div class="line">13、error_messages=None　　错误提示</div><div class="line">14、auto_created=False　　自动创建</div><div class="line">15、help_text　　在Admin中提示帮助信息</div><div class="line">16、validators=[]</div><div class="line">17、upload-to  上传到哪个位置,更多与image,filepath配合使用</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="连表结构"><a href="#连表结构" class="headerlink" title="连表结构"></a>连表结构</h6><p>一对多:models.ForeignKey(其他表)<br>多对多:models.ManyToManyField(其他表)<br>一对一:models.OneToOneField(其他表)<br>应用场景:<br>一对多：当一张表中创建一行数据时，有一个单选的下拉框（可以被重复选择）<br>多对多：在某表中创建一行数据是，有一个可以多选的下拉框<br>一对一：在某表中创建一行数据时，有一个单选的下拉框（下拉框中的内容被用过一次就消失了  </p>
+<h5 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h5><h6 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 增</div><div class="line">models.Tb1.objects.create(c1=&apos;xx&apos;, c2=&apos;oo&apos;)  增加一条数据，可以接受字典类型数据 **kwargs</div><div class="line">或</div><div class="line">obj = models.Tb1(c1=&apos;xx&apos;, c2=&apos;oo&apos;)</div><div class="line">obj.save()</div><div class="line"></div><div class="line"># 查</div><div class="line">models.Tb1.objects.get(id=123)  # 获取单条数据，不存在则报错（不建议）</div><div class="line">models.Tb1.objects.all()    # 获取全部</div><div class="line">models.Tb1.objects.filter(name=&apos;seven&apos;) # 获取指定条件的数据</div><div class="line"></div><div class="line"># 删</div><div class="line">models.Tb1.objects.filter(name=&apos;seven&apos;).delete() # 删除指定条件的数据</div><div class="line"></div><div class="line"># 改</div><div class="line">models.Tb1.objects.filter(name=&apos;seven&apos;).update(gender=&apos;0&apos;)  # 将指定条件的数据更新，均支持 **kwargs</div><div class="line">obj = models.Tb1.objects.get(id=1)</div><div class="line">obj.c1 = &apos;111&apos;</div><div class="line">obj.save()      # 修改单条数据</div></pre></td></tr></table></figure>
+<h6 id="进阶操作"><a href="#进阶操作" class="headerlink" title="进阶操作"></a>进阶操作</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"># 获取个数</div><div class="line">models.Tb1.objects.filter(name=&apos;seven&apos;).count()</div><div class="line"></div><div class="line"># 大于，小于</div><div class="line">models.Tb1.objects.filter(id__gt=1)              # 获取id大于1的值</div><div class="line">models.Tb1.objects.filter(id__lt=10)             # 获取id小于10的值</div><div class="line">models.Tb1.objects.filter(id__lt=10, id__gt=1)   # 获取id大于1 且 小于10的值</div><div class="line"></div><div class="line"># in</div><div class="line">models.Tb1.objects.filter(id__in=[11, 22, 33])   # 获取id等于11、22、33的数据</div><div class="line">models.Tb1.objects.exclude(id__in=[11, 22, 33])  # not in</div><div class="line"></div><div class="line"># contains</div><div class="line">models.Tb1.objects.filter(name__contains=&quot;ven&quot;)</div><div class="line">models.Tb1.objects.filter(name__icontains=&quot;ven&quot;) # icontains大小写不敏感</div><div class="line">models.Tb1.objects.exclude(name__icontains=&quot;ven&quot;)</div><div class="line"></div><div class="line"># range</div><div class="line">models.Tb1.objects.filter(id__range=[1, 2])   # 范围bettwen and</div><div class="line"></div><div class="line"># 其他类似</div><div class="line"># startswith，istartswith, endswith, iendswith,</div><div class="line"></div><div class="line"># order by</div><div class="line">models.Tb1.objects.filter(name=&apos;seven&apos;).order_by(&apos;id&apos;)    # asc</div><div class="line">models.Tb1.objects.filter(name=&apos;seven&apos;).order_by(&apos;-id&apos;)   # desc</div><div class="line"></div><div class="line"># limit 、offset</div><div class="line">models.Tb1.objects.all()[10:20]</div><div class="line"></div><div class="line"># group by  去重 values(&apos;id&apos;)在annotate前面就是为了根据id生成group by</div><div class="line">#需要固定导入,称为聚合函数</div><div class="line">from django.db.models import Count, Min, Max, Sum</div><div class="line">models.Tb1.objects.filter(c1=1).values(&apos;id&apos;).annotate(c=Count(&apos;num&apos;))</div><div class="line">moddels.Tb1.objects.filter(c1=1).values(&apos;id&apos;).annotate(c=Count(&apos;id&apos;)).values(&apos;id&apos;&apos;,&apos;name&apos;)</div><div class="line"># SELECT &quot;app01_tb1&quot;.&quot;id&quot;, COUNT(&quot;app01_tb1&quot;.&quot;num&quot;) AS &quot;c&quot; FROM &quot;app01_tb1&quot; WHERE &quot;app01_tb1&quot;.&quot;c1&quot; = 1 GROUP BY &quot;app01_tb1&quot;.&quot;id&quot;</div></pre></td></tr></table></figure>
+<h5 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h5><p><a href="http://www.cnblogs.com/ccorz/p/5845711.html" target="_blank" rel="external">Django之model详解</a></p>
 
       
     </div>
@@ -432,9 +440,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/centos6-5/" rel="tag"># centos6.5</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
-            <a href="/tags/glibc/" rel="tag"># glibc</a>
+            <a href="/tags/django/" rel="tag"># django</a>
           
         </div>
       
@@ -447,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/01/shell/Centos6.5安装vim自动补全插件YouCompleteMe/" rel="next" title="Centos6.5安装vim自动补全插件YouCompleteMe">
-                <i class="fa fa-chevron-left"></i> Centos6.5安装vim自动补全插件YouCompleteMe
+              <a href="/2017/04/05/shell/Centos6.5升级glibc2.12到2.15/" rel="next" title="Centos6.5升级glibc2.12到2.15">
+                <i class="fa fa-chevron-left"></i> Centos6.5升级glibc2.12到2.15
               </a>
             
           </div>
@@ -456,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/11/django/Django之model详解/" rel="prev" title="Django之model详解">
-                Django之model详解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -485,8 +489,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/04/05/shell/Centos6.5升级glibc2.12到2.15/"
-           data-title="Centos6.5升级glibc2.12到2.15" data-url="http://yoursite.com/2017/04/05/shell/Centos6.5升级glibc2.12到2.15/">
+      <div class="ds-thread" data-thread-key="2017/04/11/django/Django之model详解/"
+           data-title="Django之model详解" data-url="http://yoursite.com/2017/04/11/django/Django之model详解/">
       </div>
     
   </div>
@@ -630,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#查看系统glibc支持的版本"><span class="nav-number">1.</span> <span class="nav-text">查看系统glibc支持的版本</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装升级glibc"><span class="nav-number">2.</span> <span class="nav-text">安装升级glibc</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#验证"><span class="nav-number">3.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#误删libc-so-6解决办法"><span class="nav-number">4.</span> <span class="nav-text">误删libc.so.6解决办法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建表"><span class="nav-number">1.</span> <span class="nav-text">创建表</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基本结构"><span class="nav-number">1.1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#连表结构"><span class="nav-number">1.2.</span> <span class="nav-text">连表结构</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表操作"><span class="nav-number">2.</span> <span class="nav-text">表操作</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#基本操作"><span class="nav-number">2.1.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#进阶操作"><span class="nav-number">2.2.</span> <span class="nav-text">进阶操作</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
