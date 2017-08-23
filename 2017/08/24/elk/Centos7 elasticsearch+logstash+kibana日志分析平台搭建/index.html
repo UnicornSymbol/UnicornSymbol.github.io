@@ -87,20 +87,20 @@
 
 
 
-<meta name="description" content="title: Centos7 elasticsearch+logstash+kibana日志分析平台搭建date: 2017-08-20 00:38:52tags: elk  
-categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部分组件组成：Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动">
+<meta name="description" content="title: Centos7 ELK日志分析平台搭建date: 2017-08-20 00:38:52tags: [elk]  
+categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部分组件组成：Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unicorn的博客">
 <meta property="og:url" content="http://yoursite.com/2017/08/24/elk/Centos7 elasticsearch+logstash+kibana日志分析平台搭建/index.html">
 <meta property="og:site_name" content="Unicorn的博客">
-<meta property="og:description" content="title: Centos7 elasticsearch+logstash+kibana日志分析平台搭建date: 2017-08-20 00:38:52tags: elk  
-categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部分组件组成：Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动">
+<meta property="og:description" content="title: Centos7 ELK日志分析平台搭建date: 2017-08-20 00:38:52tags: [elk]  
+categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部分组件组成：Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数">
 <meta property="og:image" content="http://yoursite.com/img/elk/elk架构.JPG">
-<meta property="og:updated_time" content="2017-08-23T20:55:08.348Z">
+<meta property="og:updated_time" content="2017-08-23T21:04:46.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unicorn的博客">
-<meta name="twitter:description" content="title: Centos7 elasticsearch+logstash+kibana日志分析平台搭建date: 2017-08-20 00:38:52tags: elk  
-categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部分组件组成：Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动">
+<meta name="twitter:description" content="title: Centos7 ELK日志分析平台搭建date: 2017-08-20 00:38:52tags: [elk]  
+categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部分组件组成：Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数">
 <meta name="twitter:image" content="http://yoursite.com/img/elk/elk架构.JPG">
 
 
@@ -334,7 +334,7 @@ categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T04:55:08+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T05:04:46+08:00">
                 2017-08-24
               </time>
             
@@ -381,7 +381,7 @@ categories: elk简介核心组成ELK由Elasticsearch、Logstash和Kibana三部�
 
       
         <hr>
-<p>title: Centos7 elasticsearch+logstash+kibana日志分析平台搭建<br>date: 2017-08-20 00:38:52<br>tags: elk  </p>
+<p>title: Centos7 ELK日志分析平台搭建<br>date: 2017-08-20 00:38:52<br>tags: [elk]  </p>
 <h2 id="categories-elk"><a href="#categories-elk" class="headerlink" title="categories: elk"></a>categories: elk</h2><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5><h6 id="核心组成"><a href="#核心组成" class="headerlink" title="核心组成"></a>核心组成</h6><p>ELK由Elasticsearch、Logstash和Kibana三部分组件组成：<br>Elasticsearch是个开源分布式搜索引擎，它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。<br>Logstash是一个完全开源的工具，它可以对你的日志进行收集、分析，并将其存储供以后使用。<br>kibana 是一个开源和免费的工具，它可以为 Logstash 和 ElasticSearch 提供的日志分析友好的 Web 界面，可以帮助您汇总、分析和搜索重要数据日志。<br><a id="more"></a></p>
 <h6 id="ELK工作流程"><a href="#ELK工作流程" class="headerlink" title="ELK工作流程"></a>ELK工作流程</h6><p>&ensp;&ensp;在需要收集日志的所有服务上部署logstash，作为logstash agent（logstash shipper）用于监控并过滤收集日志，将过滤后的内容发送到Redis，然后logstash indexer将日志收集在一起交给全文搜索服务ElasticSearch，可以用ElasticSearch进行自定义搜索通过Kibana 来结合自定义搜索进行页面展示。<br><img src="/img/elk/elk架构.JPG" alt="image"></p>
 <h5 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h5><p>Elasticsearch+redis：centos7.3 x86_64 IP:172.26.1.65<br>Logstash+Kibana：centos7.3 x86_64 IP:172.26.1.64  </p>
