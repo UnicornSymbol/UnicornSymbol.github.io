@@ -1,0 +1,962 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="elk," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="LogStash的Shipper和Indexer&amp;ensp;&amp;ensp;LogStash自身没有什么角色，只是根据不同的功能、不同的配置给出不同的称呼而已。Shipper主要是安装在需要收集的日志服务器上，其input为实际的日志源，output一般来说都是Redis(你要是不想用redis做缓存也可以用其他的);Indexer则是单独部署(可以集群)，其input是redis(shipper的o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK(二)——logstash配置和使用">
+<meta property="og:url" content="http://yoursite.com/2017/08/29/elk/ELK(二)——logstash配置和使用/index.html">
+<meta property="og:site_name" content="Unicorn的博客">
+<meta property="og:description" content="LogStash的Shipper和Indexer&amp;ensp;&amp;ensp;LogStash自身没有什么角色，只是根据不同的功能、不同的配置给出不同的称呼而已。Shipper主要是安装在需要收集的日志服务器上，其input为实际的日志源，output一般来说都是Redis(你要是不想用redis做缓存也可以用其他的);Indexer则是单独部署(可以集群)，其input是redis(shipper的o">
+<meta property="og:updated_time" content="2017-09-16T15:53:00.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELK(二)——logstash配置和使用">
+<meta name="twitter:description" content="LogStash的Shipper和Indexer&amp;ensp;&amp;ensp;LogStash自身没有什么角色，只是根据不同的功能、不同的配置给出不同的称呼而已。Shipper主要是安装在需要收集的日志服务器上，其input为实际的日志源，output一般来说都是Redis(你要是不想用redis做缓存也可以用其他的);Indexer则是单独部署(可以集群)，其input是redis(shipper的o">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6399529290093823000',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/29/elk/ELK(二)——logstash配置和使用/"/>
+
+
+
+
+
+  <title> ELK(二)——logstash配置和使用 | Unicorn的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Unicorn的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天行健，君子以自强不息。地势坤，君子以厚德载物。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/elk/ELK(二)——logstash配置和使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Unicorn">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/unicorn.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Unicorn的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ELK(二)——logstash配置和使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T16:37:27+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/elk/" itemprop="url" rel="index">
+                    <span itemprop="name">elk</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/29/elk/ELK(二)——logstash配置和使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/29/elk/ELK(二)——logstash配置和使用/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="LogStash的Shipper和Indexer"><a href="#LogStash的Shipper和Indexer" class="headerlink" title="LogStash的Shipper和Indexer"></a>LogStash的Shipper和Indexer</h5><p>&ensp;&ensp;LogStash自身没有什么角色，只是根据不同的功能、不同的配置给出不同的称呼而已。<br>Shipper主要是安装在需要收集的日志服务器上，其input为实际的日志源，output一般来说都是Redis(你要是不想用redis做缓存也可以用其他的);<br>Indexer则是单独部署(可以集群)，其input是redis(shipper的output)，output则是elasticSearch搜索引擎。<br><a id="more"></a>  </p>
+<h5 id="LogStash配置组成"><a href="#LogStash配置组成" class="headerlink" title="LogStash配置组成"></a>LogStash配置组成</h5><p>&ensp;&ensp;LogStash配置文件主要由 input、output、filter、codec等区域组成，每个区域内可以定义多个插件。  </p>
+<h6 id="input"><a href="#input" class="headerlink" title="input"></a>input</h6><p>input用来定义日志数据的来源，即日志数据从哪里传输到logstash中。其中常见的配置如下：  </p>
+<ul>
+<li>file：从文件系统中读取一个文件，很像UNIX命令 “tail -0a”  </li>
+<li>syslog：监听514端口，按照RFC3164标准解析日志数据  </li>
+<li>redis：从redis服务器读取数据，支持channel(发布订阅)和list模式。redis一般在Logstash消费集群中作为”broker”角色，保存events队列供Logstash消费。  </li>
+<li>lumberjack：使用lumberjack协议来接收数据，目前已经改为filebeat。  <h6 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h6>fillter在Logstash处理链中担任中间处理组件。他们经常被组合起来实现一些特定的行为，处理匹配特定规则的事件流。常见的filter配置如下：  </li>
+<li>grok：解析无规则的文字并转化为有结构的格式。Grok 是目前最好的方式来将无结构的数据转换为有结构可查询的数据。有120多种匹配规则，会有一种满足你的需要。  </li>
+<li>mutate：mutate filter允许改变输入的文档，你可以在处理事件的过程中重命名，删除，移动或者修改字段。  </li>
+<li>drop：丢弃一部分events不进行处理，例如：debug events。  </li>
+<li>clone：拷贝event，这个过程中也可以添加或移除字段。  </li>
+<li>geoip：添加地理信息(为前台kibana图形化展示使用)  <h6 id="output"><a href="#output" class="headerlink" title="output"></a>output</h6>output是logstash处理管道的最末端组件。一个event可以在处理过程中经过多重输出，但是一旦所有的outputs都执行结束，这个event也就完成生命周期。一些常用的output配置包括：  </li>
+<li>elasticsearch：如果你计划将高效的保存数据，并且能够方便和简单的进行查询，Elasticsearch是一个好的方式。  </li>
+<li>file：将event数据保存到文件中。  </li>
+<li>graphite：将event数据发送到图形化组件中，一个很流行的开源存储图形化展示的组件。<a href="http://graphite.wikidot.com/。" target="_blank" rel="external">http://graphite.wikidot.com/。</a>  </li>
+<li>statsd：statsd是一个统计服务，比如技术和时间统计，通过udp通讯，聚合一个或者多个后台服务，如果你已经开始使用statsd，该选项对你应该很有用。  <h6 id="codec"><a href="#codec" class="headerlink" title="codec"></a>codec</h6>codec是基于数据流的过滤器，它可以作为input，output的一部分配置。Codec可以帮助你轻松的分割发送过来已经被序列化的数据。流行的codecs包括：  </li>
+<li>json：使用json格式对数据进行编码/解码</li>
+<li>multiline：将汇多个事件中数据汇总为一个单一的行。比如：java异常信息和堆栈信息</li>
+</ul>
+<h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><h6 id="配置解析"><a href="#配置解析" class="headerlink" title="配置解析"></a>配置解析</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">input &#123;</div><div class="line">    file &#123;  # 使用file 作为输入源</div><div class="line">        path =&gt; [ &quot;/var/log/nginx/access.log&quot; ]  # 日志的路径，支持/var/log*.log，及[ &quot;/var/log/messages&quot;, &quot;/var/log/*.log&quot; ] 格式</div><div class="line">        start_position =&gt; &quot;beginning&quot;  # 从文件的开始读取事件。另外还有end参数</div><div class="line">        ignore_older =&gt; 0  #  忽略早于24小时（默认值86400）的日志，设为0，即关闭该功能，以防止文件中的事件由于是早期的被logstash所忽略。</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">filter &#123;</div><div class="line">    grok &#123;  #  数据结构化转换工具</div><div class="line">        patterns_dir =&gt; [&quot;/opt/logstash/patterns&quot;]  # 指定gork表达式文件路径</div><div class="line">        match =&gt; &#123; &quot;message&quot; =&gt; &quot;%&#123;NGINXACCESS&#125;&quot; &#125;  # 匹配条件格式，将nginx日志作为message变量，并应用grok条件NGINXACCESS进行转换</div><div class="line">    &#125;</div><div class="line">    geoip &#123;  # 该过滤器从geoip中匹配ip字段，显示该ip的地理位置</div><div class="line">      source =&gt; &quot;clientip&quot;  # ip来源字段</div><div class="line">      target =&gt; &quot;geoip&quot;  # 指定插入的logstash字断目标存储为geoip</div><div class="line">      database =&gt; &quot;/opt/logstash/GeoLite2-City_20170801/GeoLite2-City.mmdb&quot;  # geoip数据库的存放路径</div><div class="line">      add_field =&gt; [ &quot;[geoip][coordinates]&quot;, &quot;%&#123;[geoip][longitude]&#125;&quot; ]  # 增加的字段，坐标经度</div><div class="line">      add_field =&gt; [ &quot;[geoip][coordinates]&quot;, &quot;%&#123;[geoip][latitude]&#125;&quot; ]  # 增加的字段，坐标纬度</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    mutate &#123;  # 数据的修改、删除、类型转换</div><div class="line">      convert =&gt; [ &quot;[geoip][coordinates]&quot;, &quot;float&quot; ]  # 将坐标转为float类型</div><div class="line">      convert =&gt; [ &quot;response&quot;,&quot;integer&quot; ]  # http的响应代码字段转换成 int</div><div class="line">      convert =&gt; [ &quot;bytes&quot;,&quot;integer&quot; ]  #  http的传输字节转换成int</div><div class="line">      replace =&gt; &#123; &quot;type&quot; =&gt; &quot;nginx_access&quot; &#125;  # 替换一个字段</div><div class="line">      remove_field =&gt; &quot;message&quot;  # 移除message 的内容，因为数据已经过滤了一份，这里不必在用到该字段了。不然会相当于存两份</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    date &#123;  # 时间处理，该插件很实用，主要是用你日志文件中事件的事件来对timestamp进行转换</div><div class="line">      match =&gt; [ &quot;timestamp&quot;,&quot;dd/MMM/yyyy:HH:mm:ss Z&quot;]  # 匹配到timestamp字段后，修改格式为dd/MMM/yyyy:HH:mm:ss Z</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    #mutate &#123;</div><div class="line">    #  remove_field =&gt; &quot;timestamp&quot;  # 移除timestamp字段。</div><div class="line">    #&#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div><div class="line">output &#123;</div><div class="line">    elasticsearch &#123;  # 输出到es中</div><div class="line">        hosts =&gt; [&quot;172.26.1.65:9200&quot;]  # es的主机ip＋端口或者es 的FQDN＋端口</div><div class="line">        index =&gt; &quot;logstash-nginx-access-%&#123;+YYYY.MM.dd&#125;&quot;  # 为日志创建索引logstash-nginx-access-＊，这里也就是kibana那里添加索引时的名称</div><div class="line">        user =&gt; &quot;elastic&quot;  # x-pack插件用户名</div><div class="line">        password =&gt; &quot;changeme&quot;  # x-pack插件密码</div><div class="line">    &#125;</div><div class="line">    stdout &#123;codec =&gt; rubydebug&#125;  # json格式输出</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="pattern配置"><a href="#pattern配置" class="headerlink" title="pattern配置"></a>pattern配置</h6><p>gork使用的是ruby正则表达式，可以参考：<a href="http://www.runoob.com/ruby/ruby-regular-expressions.html" target="_blank" rel="external">Ruby 正则表达式</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># mkdir -pv /opt/logstash/patterns</div><div class="line">]# cat /opt/logstash/patterns/nginx </div><div class="line">NGUSERNAME [a-zA-Z\.\@\-\+_%]+</div><div class="line">NGUSER %&#123;NGUSERNAME&#125;</div><div class="line">NGINXACCESS %&#123;IPORHOST:clientip&#125; - %&#123;NOTSPACE:remote_user&#125; \[%&#123;HTTPDATE:timestamp&#125;\] \&quot;(?:%&#123;WORD:verb&#125; %&#123;NOTSPACE:request&#125;(?: HTTP/%&#123;NUMBER:httpversion&#125;)?|%&#123;DATA:rawrequest&#125;)\&quot; %&#123;NUMBER:response&#125; (?:%&#123;NUMBER:bytes&#125;|-) %&#123;QS:referrer&#125; %&#123;QS:agent&#125; \&quot;(?: %&#123;IPV4:http_x_forwarded_for&#125;|-)\&quot;</div></pre></td></tr></table></figure></p>
+<h6 id="geoip配置"><a href="#geoip配置" class="headerlink" title="geoip配置"></a>geoip配置</h6><p>logstash5依赖于geolite2数据库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz</div><div class="line"># mv GeoLite2-City.tar.gz /opt/logstash/</div><div class="line"># cd /opt/logstash/</div><div class="line"># tar xf GeoLite2-City.tar.gz</div></pre></td></tr></table></figure></p>
+<p><strong>注：</strong>geoip插件的“source”字段可以是任一处理后的字段，比如“clientip”，但是字段内容却需要小心！GeoIp库内只存有公共网络上的IP信息，查询不到结果的，会直接返回null，而Logstash的GeoIp插件对null结果的处理是：“不生成对应的geoip.字段”。所以读者在测试时，如果使用了诸如127.0.0.1、172.16.0.1、182.168.0.1、10.0.0.1等内网地址，会发现没有对应输出！  </p>
+<h5 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h5><p><a href="https://www.elastic.co/guide/en/logstash/current/index.html" target="_blank" rel="external">Logstash Reference</a><br><a href="http://www.cnblogs.com/hanyifeng/p/5857875.html" target="_blank" rel="external">利用 ELK系统分析Nginx日志并对数据进行可视化展示</a><br><a href="http://blog.csdn.net/wp500/article/details/41040213" target="_blank" rel="external">llogstash快速入门</a><br><a href="http://liqingbiao.blog.51cto.com/3044896/1928653" target="_blank" rel="external">Logstash笔记（三）—-Filter插件及grok的正则表达式来解析日志</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/elk/" rel="tag"># elk</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/20/elk/ELK(一)——Centos7 elk日志分析平台搭建/" rel="next" title="ELK(一)——Centos7 elk日志分析平台搭建">
+                <i class="fa fa-chevron-left"></i> ELK(一)——Centos7 elk日志分析平台搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/31/elk/ELK(三)——性能采集工具metricbeat/" rel="prev" title="ELK(二)——性能采集工具metricbeat">
+                ELK(二)——性能采集工具metricbeat <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/08/29/elk/ELK(二)——logstash配置和使用/"
+           data-title="ELK(二)——logstash配置和使用" data-url="http://yoursite.com/2017/08/29/elk/ELK(二)——logstash配置和使用/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/unicorn.jpg"
+               alt="Unicorn" />
+          <p class="site-author-name" itemprop="name">Unicorn</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/unicornsymbol" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://t.qq.com/wangyongbi7827" target="_blank" title="腾讯微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  腾讯微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://anyisalin.github.io/" title="anyisalin" target="_blank">anyisalin</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://zantony.top/" title="antony" target="_blank">antony</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#LogStash的Shipper和Indexer"><span class="nav-number">1.</span> <span class="nav-text">LogStash的Shipper和Indexer</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LogStash配置组成"><span class="nav-number">2.</span> <span class="nav-text">LogStash配置组成</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#input"><span class="nav-number">2.1.</span> <span class="nav-text">input</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#filter"><span class="nav-number">2.2.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#output"><span class="nav-number">2.3.</span> <span class="nav-text">output</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#codec"><span class="nav-number">2.4.</span> <span class="nav-text">codec</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实例"><span class="nav-number">3.</span> <span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#配置解析"><span class="nav-number">3.1.</span> <span class="nav-text">配置解析</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#pattern配置"><span class="nav-number">3.2.</span> <span class="nav-text">pattern配置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#geoip配置"><span class="nav-number">3.3.</span> <span class="nav-text">geoip配置</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Unicorn</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"unicorn"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
